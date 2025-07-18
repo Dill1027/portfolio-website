@@ -13,6 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#00b894">
+    <!-- Note: 'theme-color' is not supported by Firefox, Firefox for Android, Opera. Safe to keep for Chrome/Edge. -->
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -43,7 +44,7 @@
             <div class="nav-logo">
                 <a href="#home">Prabhath.dev</a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item">
                     <a href="#home" class="nav-link">Home</a>
                 </li>
@@ -70,11 +71,11 @@
                 <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light theme" aria-label="Toggle dark/light theme">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="hamburger">
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
-                </div>
+                </button>
             </div>
         </div>
     </nav>

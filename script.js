@@ -1,7 +1,7 @@
 // DOM Elements
 const themeToggle = document.getElementById('theme-toggle');
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const contactForm = document.getElementById('contactForm');
 
@@ -34,19 +34,9 @@ function updateThemeIcon(theme) {
 function toggleMobileMenu() {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
-    
-    // Animate hamburger bars
-    const bars = hamburger.querySelectorAll('.bar');
-    bars.forEach((bar, index) => {
-        if (hamburger.classList.contains('active')) {
-            if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
-            if (index === 1) bar.style.opacity = '0';
-            if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            bar.style.transform = 'none';
-            bar.style.opacity = '1';
-        }
-    });
+    // Update ARIA
+    const expanded = hamburger.classList.contains('active');
+    hamburger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 }
 
 // Smooth Scrolling for Navigation Links
@@ -673,45 +663,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add CSS for mobile menu (since we need to add it dynamically)
-const mobileMenuStyles = `
-    @media (max-width: 768px) {
-        .nav-menu {
-            position: fixed;
-            left: -100%;
-            top: 70px;
-            flex-direction: column;
-            background-color: var(--bg-primary);
-            width: 100%;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .nav-menu.active {
-            left: 0;
-        }
-        
-        .nav-item {
-            margin: 1rem 0;
-        }
-        
-        .hamburger.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        
-        .hamburger.active .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-    }
-`;
-
-// Inject mobile menu styles
-const styleSheet = document.createElement('style');
-styleSheet.textContent = mobileMenuStyles;
-document.head.appendChild(styleSheet);
+// Mobile menu CSS moved to styles.css for best practice

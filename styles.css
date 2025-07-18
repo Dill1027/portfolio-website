@@ -169,6 +169,8 @@ p {
     text-decoration: none;
 }
 
+
+/* .nav-menu base styles */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -196,6 +198,47 @@ p {
     height: 2px;
     background-color: var(--primary-color);
     transition: var(--transition);
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--bg-primary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        border-top: 1px solid var(--border-color);
+        z-index: 999;
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .nav-item {
+        margin: 1rem 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
 }
 
 .nav-link:hover::after {
@@ -1726,9 +1769,8 @@ section {
 /* High DPI displays optimization */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .profile-photo {
-        -webkit-optimize-contrast: crisp-edges;
         image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
+        /* 'crisp-edges' removed for Edge compatibility */
     }
 }
 
