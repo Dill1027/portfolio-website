@@ -9,21 +9,37 @@ collections:
   - name: "settings"
     label: "Site Settings"
     files:
-      - file: "index.html"
-        label: "Portfolio Content"
-        name: "portfolio"
+      - file: "content/settings.md"
+        label: "Settings"
+        name: "settings"
         fields:
           - { label: "Your Name", name: "name", widget: "string" }
-          - { label: "About Text", name: "about", widget: "text" }
-          - { label: "Contact Email", name: "email", widget: "string" }
+          - { label: "Bio", name: "bio", widget: "text" }
+          - { label: "About Me", name: "about", widget: "text" }
+          - { label: "Contact Email", name: "contact_email", widget: "string" }
+          - label: "Social Links"
+            name: "social"
+            widget: "list"
+            fields:
+              - { label: "Platform", name: "platform", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            field: { label: "Skill", name: "skill", widget: "string" }
 
   - name: "projects"
     label: "Projects"
-    folder: "projects"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Project URL", name: "url", widget: "string" }
+    files:
+      - file: "content/projects.md"
+        label: "Projects"
+        name: "projects"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Project URL", name: "url", widget: "string" }
