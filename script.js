@@ -1,106 +1,85 @@
-// DOM Elements
+// Navigation, theme preferences and project filters. No animation hides content.
 const themeToggle = document.getElementById('theme-toggle');
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const contactForm = document.getElementById('contactForm');
-
-// Theme Management
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
+const mobileQuery = window.matchMedia('(max-width: 991px)');
+function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeToggle.querySelector('i').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
 }
-
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
+let initialTheme = 'light';
+try { initialTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'; } catch {}
+setTheme(initialTheme);
+themeToggle.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(theme);
+    try { localStorage.setItem('theme', theme); } catch {}
+});
+function setMenu(open, restoreFocus = false) {
+    navMenu.classList.toggle('active', open);
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    navMenu.inert = mobileQuery.matches && !open;
+    if (restoreFocus) hamburger.focus();
 }
-
-function updateThemeIcon(theme) {
-    const icon = themeToggle.querySelector('i');
-    if (theme === 'dark') {
-        icon.className = 'fas fa-sun';
-    } else {
-        icon.className = 'fas fa-moon';
+hamburger.addEventListener('click', () => setMenu(hamburger.getAttribute('aria-expanded') !== 'true'));
+mobileQuery.addEventListener('change', () => setMenu(false));
+setMenu(false);
+navLinks.forEach(link => link.addEventListener('click', () => {
+    setMenu(false);
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
     }
+}));
+document.addEventListener('click', event => {
+    if (!event.target.closest('.navbar')) setMenu(false);
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navMenu.classList.contains('active')) setMenu(false, true);
+});
+const filters = document.querySelector('.project-filters');
+const cards = [...document.querySelectorAll('.project-card')];
+const projectCount = document.getElementById('project-count');
+filters.hidden = false;
+function filterProjects(category) {
+    let count = 0;
+    cards.forEach(card => {
+        card.hidden = category !== 'all' && card.dataset.category !== category;
+        if (!card.hidden) count++;
+    });
+    filters.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === category)));
+    projectCount.textContent = `${count} ${count === 1 ? 'project' : 'projects'} shown`;
 }
-
-// Mobile Navigation
-function toggleMobileMenu() {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    // Update ARIA
-    const expanded = hamburger.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-}
-
-// Smooth Scrolling for Navigation Links
-function setupSmoothScrolling() {
+filters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-filter]');
+    if (button) filterProjects(button.dataset.filter);
+});
+filterProjects('all');
+const sections = [...document.querySelectorAll('main > section[id]')];
+let scrollPending = false;
+function updateNavigation() {
+    document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 30);
+    const current = [...sections].reverse().find(section => section.getBoundingClientRect().top <= 140);
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
-            }
-        });
+        const active = current && link.hash === '#' + current.id;
+        link.classList.toggle('active', Boolean(active));
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
     });
+    scrollPending = false;
 }
+window.addEventListener('scroll', () => {
+    if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateNavigation); }
+}, { passive: true });
+updateNavigation();
+contactForm.addEventListener('submit', handleFormSubmission);
 
-// Active Navigation Link Highlighting
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + 100;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-}
-
-// Navbar Background on Scroll
-function handleNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-        if (document.documentElement.getAttribute('data-theme') === 'dark') {
-            navbar.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
-        }
-    } else {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        if (document.documentElement.getAttribute('data-theme') === 'dark') {
-            navbar.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
-        }
-    }
-}
-
-// Form Handling
 async function handleFormSubmission(e) {
     e.preventDefault();
     const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -138,6 +117,7 @@ async function handleFormSubmission(e) {
         }
         status.textContent = 'Your message was submitted. Thank you for getting in touch!';
         contactForm.reset();
+        document.getElementById('contact-success').showModal();
     } catch (error) {
         status.textContent = error.name === 'AbortError'
             ? 'The request timed out. Your message is still here; please try again or email prabhathdilshan2001@gmail.com.'
@@ -150,146 +130,6 @@ async function handleFormSubmission(e) {
     }
 }
 
-// Download CV functionality
-function initDownloadCV() {
-    // The download link serves the latest original CV document directly.
-}
-
-// Enhanced Animations
-function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                
-                // Special animations for specific elements
-                if (entry.target.classList.contains('testimonial-card')) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, Math.random() * 300);
-                }
-                
-                if (entry.target.classList.contains('skill-item')) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, Math.random() * 200);
-                }
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll(
-        '.testimonial-card, .skill-item, .project-card, .about-card, .contact-item'
-    );
-    
-    animatedElements.forEach((el) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Typing animation for hero subtitle
-function initTypingAnimation() {
-    const subtitle = document.querySelector('.hero-subtitle');
-    if (subtitle && window.innerWidth > 768) {
-        const text = subtitle.textContent;
-        subtitle.textContent = '';
-        subtitle.style.borderRight = '2px solid var(--primary-color)';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                subtitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                // Blinking cursor effect
-                setInterval(() => {
-                    subtitle.style.borderRight = subtitle.style.borderRight === 'none' 
-                        ? '2px solid var(--primary-color)' 
-                        : 'none';
-                }, 500);
-            }
-        };
-        
-        setTimeout(typeWriter, 1000);
-    }
-}
-
-// Notification system
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-        <span>${message}</span>
-    `;
-    
-    // Add notification styles if they don't exist
-    if (!document.querySelector('#notification-styles')) {
-        const styles = document.createElement('style');
-        styles.id = 'notification-styles';
-        styles.textContent = `
-            .notification {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 0.5rem;
-                color: white;
-                font-weight: 500;
-                z-index: 9999;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                animation: slideInRight 0.3s ease;
-            }
-            
-            .notification-success {
-                background: var(--primary-color);
-            }
-            
-            .notification-info {
-                background: var(--accent-color);
-            }
-            
-            .notification-error {
-                background: #ef4444;
-            }
-            
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(styles);
-    }
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideInRight 0.3s ease reverse';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Enhanced form validation
 function validateForm(formData) {
     const errors = [];
     
@@ -316,305 +156,3 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
-// Intersection Observer for Animations
-function setupScrollAnimations() {
-    const animationElements = document.querySelectorAll('.skill-item, .project-card, .about-card');
-    
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    animationElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Typing Animation for Hero Section
-function setupTypingAnimation() {
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    const roles = [
-        'Full Stack Developer',
-        'MERN Stack Developer',
-        'UI/UX Designer',
-        'Web Developer',
-        'Software Engineer'
-    ];
-    
-    let currentRoleIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    
-    function typeEffect() {
-        const currentRole = roles[currentRoleIndex];
-        
-        if (isDeleting) {
-            heroSubtitle.textContent = currentRole.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-        } else {
-            heroSubtitle.textContent = currentRole.substring(0, currentCharIndex + 1);
-            currentCharIndex++;
-        }
-        
-        let typeSpeed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && currentCharIndex === currentRole.length) {
-            typeSpeed = 2000; // Pause at end
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-            typeSpeed = 500; // Pause before typing next
-        }
-        
-        setTimeout(typeEffect, typeSpeed);
-    }
-    
-    // Start typing animation after 1 second
-    setTimeout(typeEffect, 1000);
-}
-
-// Add some dynamic stats counting
-function animateStats() {
-    const stats = document.querySelectorAll('.stat h3');
-    const duration = 2000; // 2 seconds
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = parseInt(target.textContent);
-                let currentValue = 0;
-                const increment = finalValue / (duration / 16); // 60fps
-                
-                const updateCounter = () => {
-                    if (currentValue < finalValue) {
-                        currentValue += increment;
-                        target.textContent = Math.ceil(currentValue) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        target.textContent = finalValue + '+';
-                    }
-                };
-                
-                updateCounter();
-                observer.unobserve(target);
-            }
-        });
-    });
-    
-    stats.forEach(stat => observer.observe(stat));
-}
-
-// Mobile-specific optimizations
-function initMobileOptimizations() {
-    // Detect mobile device
-    const isMobile = window.innerWidth <= 768;
-    const isTouch = 'ontouchstart' in window;
-    
-    if (isMobile || isTouch) {
-        // Add mobile class to body
-        document.body.classList.add('mobile-device');
-        
-        // Disable hover effects on mobile
-        const style = document.createElement('style');
-        style.textContent = `
-            @media (hover: none) {
-                .project-card:hover,
-                .testimonial-card:hover,
-                .blog-card:hover,
-                .skill-item:hover {
-                    transform: none !important;
-                    box-shadow: var(--shadow-light) !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Optimize touch interactions
-        document.addEventListener('touchstart', function() {}, {passive: true});
-        document.addEventListener('touchmove', function() {}, {passive: true});
-    }
-    
-    // Handle orientation change
-    window.addEventListener('orientationchange', function() {
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-            // Re-calculate any position-dependent elements
-            updateActiveNavLink();
-        }, 100);
-    });
-    
-    // Prevent zoom on input focus for iOS
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        const inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.style.fontSize = '16px';
-            });
-            input.addEventListener('blur', function() {
-                this.style.fontSize = '';
-            });
-        });
-    }
-}
-
-// Optimize scroll performance for mobile
-function optimizeScrollPerformance() {
-    let ticking = false;
-    
-    function updateScrollElements() {
-        updateActiveNavLink();
-        handleNavbarScroll();
-        ticking = false;
-    }
-    
-    function requestScrollUpdate() {
-        if (!ticking) {
-            requestAnimationFrame(updateScrollElements);
-            ticking = true;
-        }
-    }
-    
-    // Use passive listeners for better performance
-    window.addEventListener('scroll', requestScrollUpdate, {passive: true});
-}
-
-// Enhanced mobile navigation
-function enhanceMobileNavigation() {
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-        const navbar = document.querySelector('.navbar');
-        const hamburger = document.querySelector('.hamburger');
-        
-        if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            
-            // Reset hamburger animation
-            const bars = hamburger.querySelectorAll('.bar');
-            bars.forEach(bar => {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            });
-        }
-    });
-    
-    // Close mobile menu when clicking on nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                const hamburger = document.querySelector('.hamburger');
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                
-                // Reset hamburger animation
-                const bars = hamburger.querySelectorAll('.bar');
-                bars.forEach(bar => {
-                    bar.style.transform = 'none';
-                    bar.style.opacity = '1';
-                });
-            }
-        });
-    });
-}
-
-// Optimize images for mobile
-function optimizeImagesForMobile() {
-    const profilePhoto = document.querySelector('.profile-photo');
-    
-    if (profilePhoto && window.innerWidth <= 480) {
-        // Add loading optimization for mobile
-        profilePhoto.loading = 'lazy';
-        profilePhoto.style.willChange = 'transform';
-    }
-}
-
-// Enhanced touch feedback
-function addTouchFeedback() {
-    const touchElements = document.querySelectorAll('.btn, .social-link, .project-card, .testimonial-card, .blog-card');
-    
-    touchElements.forEach(element => {
-        element.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
-            this.style.transition = 'transform 0.1s ease';
-        }, {passive: true});
-        
-        element.addEventListener('touchend', function() {
-            setTimeout(() => {
-                this.style.transform = '';
-                this.style.transition = '';
-            }, 150);
-        }, {passive: true});
-    });
-}
-
-// Viewport height fix for mobile browsers
-function fixMobileViewportHeight() {
-    const setVH = () => {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-    
-    setVH();
-    window.addEventListener('resize', setVH);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(setVH, 100);
-    });
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    setupSmoothScrolling();
-    setupScrollAnimations();
-
-
-    initDownloadCV();
-    initScrollAnimations();
-
-    initMobileOptimizations();
-    optimizeScrollPerformance();
-    enhanceMobileNavigation();
-    optimizeImagesForMobile();
-    addTouchFeedback();
-    fixMobileViewportHeight();
-    
-    // Event Listeners
-    themeToggle.addEventListener('click', toggleTheme);
-    hamburger.addEventListener('click', toggleMobileMenu);
-    contactForm.addEventListener('submit', handleFormSubmission);
-    
-    // Scroll Events
-    window.addEventListener('scroll', () => {
-        updateActiveNavLink();
-        handleNavbarScroll();
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            if (navMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        }
-    });
-});
-
-// Mobile menu CSS moved to styles.css for best practice

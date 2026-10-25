@@ -17,17 +17,17 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://prabhath.dev/">
+    <meta property="og:url" content="https://prabhath-dilshan-abeysinghe.netlify.app/">
     <meta property="og:title" content="Prabhath Dilshan Abeysinghe - Full Stack Developer">
     <meta property="og:description" content="IT undergraduate at SLIIT with expertise in full-stack web development, specializing in MERN stack and modern technologies.">
-    <meta property="og:image" content="https://github.com/Dill1027.png">
+    <meta property="og:image" content="https://prabhath-dilshan-abeysinghe.netlify.app/images/profile-avatar.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://prabhath.dev/">
+    <meta property="twitter:url" content="https://prabhath-dilshan-abeysinghe.netlify.app/">
     <meta property="twitter:title" content="Prabhath Dilshan Abeysinghe - Full Stack Developer">
     <meta property="twitter:description" content="IT undergraduate at SLIIT with expertise in full-stack web development, specializing in MERN stack and modern technologies.">
-    <meta property="twitter:image" content="https://github.com/Dill1027.png">
+    <meta property="twitter:image" content="https://prabhath-dilshan-abeysinghe.netlify.app/images/profile-avatar.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
@@ -35,11 +35,12 @@
     <title>Prabhath Dilshan Abeysinghe - Full Stack Developer Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="#home">Prabhath.dev</a>
@@ -57,8 +58,7 @@
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">Projects</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                <li class="nav-item"><a href="#research" class="nav-link">Research</a>
                 </li>
                 <li class="nav-item">
                     <a href="#skills" class="nav-link">Skills</a>
@@ -80,20 +80,21 @@
         </div>
     </nav>
 
+    <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="profile-card">
                     <div class="profile-image">
-                        <img src="https://github.com/Dill1027.png" alt="Prabhath Dilshan Abeysinghe - Full Stack Developer" class="profile-photo">
+                        <img src="images/profile-avatar.png" width="640" height="640" fetchpriority="high" alt="Prabhath Dilshan Abeysinghe - Full Stack Developer" class="profile-photo">
                     </div>
                 </div>
                 <h1 class="hero-title">
                     Hi, I'm <span class="highlight">Prabhath Dilshan</span>
                 </h1>
                 <p class="hero-subtitle">IT Assistant | Web Developer | IT Executive</p>
-                <p class="hero-description">Information Technology undergraduate at the Sri Lanka Institute of Information Technology (SLIIT) with industry experience in IT support and hands-on web application development. Experienced in building internal business solutions using React.js, Node.js, Express.js, MongoDB and Firebase. Interested in IT operations, troubleshooting, full-stack development and practical technology solutions.</p>
+                <p class="hero-description">IT undergraduate at SLIIT with hands-on experience in IT support and full-stack web development. I build practical business applications and interactive learning experiences.</p>
                 <div class="hero-features">
                     <div class="feature-item">
                         <i class="fas fa-code"></i>
@@ -115,9 +116,9 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                    <a href="assets/Prabhath_Dilshan_Professional_CV.docx" download class="btn btn-outline" id="downloadCV">
+                    <a href="assets/Prabhath_Dilshan_Professional_CV.pdf" download class="btn btn-outline" id="downloadCV">
                         <i class="fas fa-download"></i>
-                        Download CV
+                        Download CV (PDF)
                     </a>
                 </div>
             </div>
@@ -204,108 +205,39 @@
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
                     <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-js-square"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-java"></i>
-                            <span>Java</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>C/C++</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>SQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML & CSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>TypeScript</span>
-                        </div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-javascript" src="images/technologies/javascript.svg" alt="" width="24" height="24" loading="lazy"></span><span>JavaScript</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-python" src="images/technologies/python.svg" alt="" width="24" height="24" loading="lazy"></span><span>Python</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-java" src="images/technologies/java.svg" alt="" width="24" height="24" loading="lazy"></span><span>Java</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-c" src="images/technologies/c.svg" alt="" width="24" height="24" loading="lazy"><img class="technology-logo logo-cplusplus" src="images/technologies/cplusplus.svg" alt="" width="24" height="24" loading="lazy"></span><span>C/C++</span></div>
+                        <div class="skill-item"><span>SQL</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-html5" src="images/technologies/html5.svg" alt="" width="24" height="24" loading="lazy"><img class="technology-logo logo-css3" src="images/technologies/css3.svg" alt="" width="24" height="24" loading="lazy"></span><span>HTML & CSS</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-php" src="images/technologies/php.svg" alt="" width="24" height="24" loading="lazy"></span><span>PHP</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-typescript" src="images/technologies/typescript.svg" alt="" width="24" height="24" loading="lazy"></span><span>TypeScript</span></div>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3>Frameworks & Libraries</h3>
                     <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-react"></i>
-                            <span>React.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-node-js"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server"></i>
-                            <span>Express.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-fire"></i>
-                            <span>Firebase</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-bootstrap"></i>
-                            <span>Bootstrap</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-wind"></i>
-                            <span>Tailwind CSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MySQL</span>
-                        </div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span><span>React.js</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span><span>Node.js</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span><span>Express.js</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-mongodb" src="images/technologies/mongodb.svg" alt="" width="24" height="24" loading="lazy"></span><span>MongoDB</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-firebase" src="images/technologies/firebase.svg" alt="" width="24" height="24" loading="lazy"></span><span>Firebase</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-bootstrap" src="images/technologies/bootstrap.svg" alt="" width="24" height="24" loading="lazy"></span><span>Bootstrap</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-tailwindcss" src="images/technologies/tailwindcss.svg" alt="" width="24" height="24" loading="lazy"></span><span>Tailwind CSS</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-mysql" src="images/technologies/mysql.svg" alt="" width="24" height="24" loading="lazy"></span><span>MySQL</span></div>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3>Tools & Platforms</h3>
-                    <div class="skill-items"><div class="skill-item"><i class="fas fa-tools" aria-hidden="true"></i><span>Figma</span></div><div class="skill-item"><i class="fas fa-tools" aria-hidden="true"></i><span>Google Apps Script</span></div><div class="skill-item"><i class="fas fa-tools" aria-hidden="true"></i><span>AWS</span></div><div class="skill-item"><i class="fas fa-tools" aria-hidden="true"></i><span>Spring Boot</span></div>
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git & GitHub</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-satellite-dish"></i>
-                            <span>Postman</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-wordpress"></i>
-                            <span>WordPress</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-file-excel"></i>
-                            <span>Excel</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>IntelliJ IDEA</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>VS Code</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-tools"></i>
-                            <span>Zoho Tools</span>
-                        </div>
+                    <div class="skill-items"><div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-figma" src="images/technologies/figma.svg" alt="" width="24" height="24" loading="lazy"></span><span>Figma</span></div><div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-appsscript" src="images/technologies/appsscript.svg" alt="" width="24" height="24" loading="lazy"></span><span>Google Apps Script</span></div><div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-aws" src="images/technologies/aws.svg" alt="" width="24" height="24" loading="lazy"></span><span>AWS</span></div><div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-spring" src="images/technologies/spring.svg" alt="" width="24" height="24" loading="lazy"></span><span>Spring Boot</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-git" src="images/technologies/git.svg" alt="" width="24" height="24" loading="lazy"><img class="technology-logo logo-github" src="images/technologies/github.svg" alt="" width="24" height="24" loading="lazy"></span><span>Git & GitHub</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-postman" src="images/technologies/postman.svg" alt="" width="24" height="24" loading="lazy"></span><span>Postman</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-wordpress" src="images/technologies/wordpress.svg" alt="" width="24" height="24" loading="lazy"></span><span>WordPress</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-excel" src="images/technologies/excel.svg" alt="" width="24" height="24" loading="lazy"></span><span>Excel</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-intellij" src="images/technologies/intellij.svg" alt="" width="24" height="24" loading="lazy"></span><span>IntelliJ IDEA</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-vscode" src="images/technologies/vscode.svg" alt="" width="24" height="24" loading="lazy"></span><span>VS Code</span></div>
+                        <div class="skill-item"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-zoho" src="images/technologies/zoho.svg" alt="" width="24" height="24" loading="lazy"></span><span>Zoho Tools</span></div>
                     </div>
                 </div>
             </div>
@@ -313,6 +245,7 @@
     </section>
 
 <section id="certifications" class="skills"><div class="container"><div class="section-header"><h2 class="section-title">Training &amp; Achievements</h2><p class="section-subtitle">Cloud learning, leadership and accomplishments</p></div><div class="skills-grid"><div class="skill-category"><h3>AWS SimuLearn</h3><p>Completion certificates (2026): Cloud Computing Essentials; Cloud First Steps; Core Security Concepts; Highly Available Web Applications; Databases in Practice; First NoSQL Database; Networking Concepts; File Systems in the Cloud; Computing Solutions.</p></div><div class="skill-category"><h3>Achievements</h3><p>Mathematics Olympiad — 1st Place, Nikawaratiya Division (2016); SLIIT Colours (2023, 2024); School Deputy Head Prefect (2020); School Sports Captain (2019–2020).</p></div><div class="skill-category"><h3>Additional Skills</h3><p>Problem-solving, communication, teamwork, design thinking, project coordination and technical troubleshooting.</p><p>Languages: Sinhala and English.</p></div></div></div></section>
+<section id="research" class="research"><div class="container"><div class="section-header"><p class="research-eyebrow">FEATURED UNDERGRADUATE RESEARCH</p><h2 class="section-title">Learning through play.</h2><p class="section-subtitle">Smart Learn — Dyscalculia Intervention Module</p></div><div class="research-intro"><div><h3>My contribution</h3><p>As a member of a four-person research group, I developed the Dyscalculia Intervention Module within Smart Learn, a platform designed for Sinhala-speaking children aged 6–8 with neurodevelopmental learning difficulties.</p><p>My component includes number tracing, sequencing, quantity matching and mathematical symbol recognition, with Sinhala instructions, progress indicators and star rewards in an ocean-themed interface.</p></div><div class="research-summary"><h3>Built with</h3><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-javascript" src="images/technologies/javascript.svg" alt="" width="24" height="24" loading="lazy"></span>JavaScript</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-firebase" src="images/technologies/firebase.svg" alt="" width="24" height="24" loading="lazy"></span>Firebase</span><span class="tech-tag">REST APIs</span></div><a href="https://r26-it-114-jflg.vercel.app/dyscalculia" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Try My Module ↗</a></div></div><div class="research-gallery"><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1350/1040;--shot-width:147.85185%;--shot-left:-24.07407%;--shot-top:-19.23077%" href="images/research/module-overview.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open My learning module screenshot"><img src="images/research/module-overview.jpg" alt="My learning module — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>My learning module</h3><p>Sinhala game selection and activity progress.</p><a href="images/research/module-overview.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1570/1100;--shot-width:127.13376%;--shot-left:-25.79618%;--shot-top:-11.81818%" href="images/research/number-tracing.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Number tracing screenshot"><img src="images/research/number-tracing.jpg" alt="Number tracing — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Number tracing</h3><p>A guided canvas for practicing number shapes.</p><a href="images/research/number-tracing.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1630/585;--shot-width:122.45399%;--shot-left:-21.16564%;--shot-top:-34.18803%" href="images/research/number-sequencing.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Number sequencing screenshot"><img src="images/research/number-sequencing.jpg" alt="Number sequencing — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Number sequencing</h3><p>Arrange numbers in order through interactive activities.</p><a href="images/research/number-sequencing.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1605/775;--shot-width:124.36137%;--shot-left:-23.05296%;--shot-top:-25.80645%" href="images/research/symbol-recognition.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Symbol recognition screenshot"><img src="images/research/symbol-recognition.jpg" alt="Symbol recognition — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Symbol recognition</h3><p>Identify mathematical symbols using Sinhala prompts.</p><a href="images/research/symbol-recognition.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1630/930;--shot-width:122.45399%;--shot-left:-21.16564%;--shot-top:-21.50538%" href="images/research/quantity-matching.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Quantity matching screenshot"><img src="images/research/quantity-matching.jpg" alt="Quantity matching — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Quantity matching</h3><p>Connect a number with its matching quantity.</p><a href="images/research/quantity-matching.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1310/1110;--shot-width:152.36641%;--shot-left:-26.33588%;--shot-top:-11.71171%" href="images/research/difficulty-levels.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Difficulty levels screenshot"><img src="images/research/difficulty-levels.jpg" alt="Difficulty levels — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Difficulty levels</h3><p>Level selection and star-based progression.</p><a href="images/research/difficulty-levels.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure><figure class="research-shot"><a class="research-preview" style="--shot-ratio:1465/795;--shot-width:136.24573%;--shot-left:-18.43003%;--shot-top:-18.23899%" href="images/research/platform-overview.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Platform overview · Team project screenshot"><img src="images/research/platform-overview.jpg" alt="Platform overview · Team project — Smart Learn screenshot" loading="lazy" width="1600" height="1000"></a><figcaption><h3>Platform overview · Team project</h3><p>The wider Smart Learn platform, shown for context.</p><a href="images/research/platform-overview.jpg" target="_blank" rel="noopener noreferrer">View screenshot ↗</a></figcaption></figure></div></div></section>
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
@@ -320,111 +253,12 @@
                 <h2 class="section-title">Featured Projects</h2>
                 <p class="section-subtitle">Some of my recent work</p>
             </div>
-            <div class="projects-grid"><div class="project-card"><div class="project-image"><i class="fas fa-brain" aria-hidden="true"></i></div><div class="project-content"><h3>Smart Learn — Dyscalculia Intervention Module</h3><p>Undergraduate research supporting Sinhala-speaking children aged 6–8. Includes Number Tracing (0–9), Number Sorting, Balloon Pop and Number Listening, with touch-friendly drag-and-drop, immediate feedback, progress tracking and performance-based star rewards.</p><div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Firebase</span><span class="tech-tag">REST APIs</span></div><div class="project-links"><a class="project-link" href="https://r26-it-114-jflg.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Smart Learn live demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a></div></div></div><div class="project-card"><div class="project-image"><i class="fas fa-car" aria-hidden="true"></i></div><div class="project-content"><h3>Online Vehicle Management System</h3><p>Individual industry project to manage company vehicle information and related workflows.</p><div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">MongoDB</span></div></div></div><div class="project-card"><div class="project-image"><i class="fas fa-solar-panel" aria-hidden="true"></i></div><div class="project-content"><h3>Solar Service Reminder System</h3><p>Individual industry project providing scheduling and reminders for solar service activities.</p><div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Firebase</span></div></div></div><div class="project-card"><div class="project-image"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div><div class="project-content"><h3>Tender Management &amp; Reminder System</h3><p>Individual industry project to organize tenders and support deadline tracking.</p><div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Firebase</span></div></div></div><div class="project-card"><div class="project-image"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div><div class="project-content"><h3>Academic Scheduler</h3><p>SLIIT academic project built using the MERN stack.</p><div class="project-tech"><span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">MongoDB</span></div><div class="project-links"><a class="project-link" href="https://acedemic-sheduler.netlify.app/" target="_blank" rel="noopener noreferrer">Live Demo</a><a class="project-link" href="https://github.com/Dill1027/academic-scheduler" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></div><div class="project-card"><div class="project-image"><i class="fas fa-code" aria-hidden="true"></i></div><div class="project-content"><h3>More Academic Projects</h3><p>To-Do App (Kotlin), Social Media App (Spring Boot) and Apparel Manufacturing Web App (MERN), developed as SLIIT academic projects.</p><div class="project-tech"><span class="tech-tag">Kotlin</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">MERN</span></div></div></div></div></div></section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What People Say</h2>
-                <p class="section-subtitle">Testimonials from colleagues and collaborators</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"Prabhath is an exceptional developer with a keen eye for detail. His work on our academic scheduler project was outstanding, delivering clean code and innovative solutions."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Dr. Sarah Johnson</h4>
-                                <p>Project Supervisor, SLIIT</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"Working with Prabhath was a great experience. He brings creativity and technical expertise to every project, always willing to go the extra mile."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Michael Chen</h4>
-                                <p>Team Lead, Development Team</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"Prabhath's ability to understand complex requirements and translate them into functional solutions is impressive. A reliable and skilled developer."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Emma Rodriguez</h4>
-                                <p>UI/UX Designer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog/Articles Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Latest Articles</h2>
-                <p class="section-subtitle">Thoughts on development and technology</p>
-            </div>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fab fa-react"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">March 15, 2024</span>
-                            <span class="blog-category">React</span>
-                        </div>
-                        <h3>Building Scalable React Applications</h3>
-                        <p>Learn best practices for structuring large React applications, including component organization, state management, and performance optimization techniques.</p>
-                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">February 28, 2024</span>
-                            <span class="blog-category">Database</span>
-                        </div>
-                        <h3>MongoDB vs MySQL: When to Use What</h3>
-                        <p>A comprehensive comparison of MongoDB and MySQL, exploring use cases, performance considerations, and decision factors for choosing the right database.</p>
-                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">February 10, 2024</span>
-                            <span class="blog-category">UI/UX</span>
-                        </div>
-                        <h3>Mobile-First Design Principles</h3>
-                        <p>Essential guidelines for creating responsive, mobile-first designs that provide excellent user experience across all devices and screen sizes.</p>
-                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+            <div class="project-filters" role="group" aria-label="Filter projects" hidden>
+<button type="button" class="filter-button" data-filter="all" aria-pressed="true" aria-controls="project-list">All</button>
+<button type="button" class="filter-button" data-filter="individual" aria-pressed="false" aria-controls="project-list">Individual</button>
+<button type="button" class="filter-button" data-filter="group" aria-pressed="false" aria-controls="project-list">Group</button>
+<button type="button" class="filter-button" data-filter="research" aria-pressed="false" aria-controls="project-list">Research</button>
+</div><p id="project-count" class="project-count" role="status" aria-live="polite"></p><div class="projects-grid" id="project-list"><div class="project-card" data-category="research"><a href="#research" class="project-image research-card-image" aria-label="Explore Smart Learn research"><img src="images/research/module-overview.jpg" alt="Smart Learn learning activity selection" loading="lazy" width="1600" height="1000"></a><div class="project-content"><h3>Smart Learn — Dyscalculia Intervention Module</h3><p class="project-role">Team research · 4 members · My contribution: Dyscalculia Intervention Module</p><p>Undergraduate research supporting Sinhala-speaking children aged 6–8. Includes Number Tracing (0–9), Number Sorting, Balloon Pop and Number Listening, with touch-friendly drag-and-drop, immediate feedback, progress tracking and performance-based star rewards.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-javascript" src="images/technologies/javascript.svg" alt="" width="24" height="24" loading="lazy"></span>JavaScript</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-firebase" src="images/technologies/firebase.svg" alt="" width="24" height="24" loading="lazy"></span>Firebase</span><span class="tech-tag">REST APIs</span></div><div class="project-links"><a class="project-link" href="https://r26-it-114-jflg.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Smart Learn live demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a></div></div></div><div class="project-card" data-category="individual"><div class="project-image"><i class="fas fa-car" aria-hidden="true"></i></div><div class="project-content"><h3>Online Vehicle Management System</h3><p class="project-role">Individual project</p><p>Individual industry project to manage company vehicle information and related workflows.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span>Node.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span>Express.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-mongodb" src="images/technologies/mongodb.svg" alt="" width="24" height="24" loading="lazy"></span>MongoDB</span></div></div></div><div class="project-card" data-category="individual"><div class="project-image"><i class="fas fa-solar-panel" aria-hidden="true"></i></div><div class="project-content"><h3>Solar Service Reminder System</h3><p class="project-role">Individual project</p><p>Individual industry project providing scheduling and reminders for solar service activities.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span>Express.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span>Node.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-firebase" src="images/technologies/firebase.svg" alt="" width="24" height="24" loading="lazy"></span>Firebase</span></div></div></div><div class="project-card" data-category="individual"><div class="project-image"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div><div class="project-content"><h3>Tender Management &amp; Reminder System</h3><p class="project-role">Individual project</p><p>Individual industry project to organize tenders and support deadline tracking.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span>Express.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span>Node.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-firebase" src="images/technologies/firebase.svg" alt="" width="24" height="24" loading="lazy"></span>Firebase</span></div></div></div><div class="project-card" data-category="group"><div class="project-image"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div><div class="project-content"><h3>Academic Scheduler</h3><p class="project-role">Group project</p><p>SLIIT academic project built using the MERN stack.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span>Node.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span>Express.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-mongodb" src="images/technologies/mongodb.svg" alt="" width="24" height="24" loading="lazy"></span>MongoDB</span></div><div class="project-links"><a class="project-link" href="https://acedemic-sheduler.netlify.app/" target="_blank" rel="noopener noreferrer">Live Demo</a><a class="project-link" href="https://github.com/Dill1027/academic-scheduler" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></div><div class="project-card" data-category="individual"><div class="project-image"><i class="fas fa-list-check" aria-hidden="true"></i></div><div class="project-content"><h3>To-Do App</h3><p class="project-role">Individual project</p><p>SLIIT academic project built with Kotlin.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-kotlin" src="images/technologies/kotlin.svg" alt="" width="24" height="24" loading="lazy"></span>Kotlin</span></div></div></div><div class="project-card" data-category="group"><div class="project-image"><i class="fas fa-users" aria-hidden="true"></i></div><div class="project-content"><h3>Social Media App</h3><p class="project-role">Group project</p><p>SLIIT academic group project built with Spring Boot.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-spring" src="images/technologies/spring.svg" alt="" width="24" height="24" loading="lazy"></span>Spring Boot</span></div></div></div><div class="project-card" data-category="individual"><div class="project-image"><i class="fas fa-shirt" aria-hidden="true"></i></div><div class="project-content"><h3>Apparel Manufacturing Web App</h3><p class="project-role">Individual project</p><p>SLIIT academic project built with the MERN stack.</p><div class="project-tech"><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-react" src="images/technologies/react.svg" alt="" width="24" height="24" loading="lazy"></span>React.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-nodejs" src="images/technologies/nodejs.svg" alt="" width="24" height="24" loading="lazy"></span>Node.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-express" src="images/technologies/express.svg" alt="" width="24" height="24" loading="lazy"></span>Express.js</span><span class="tech-tag"><span class="technology-logos" aria-hidden="true"><img class="technology-logo logo-mongodb" src="images/technologies/mongodb.svg" alt="" width="24" height="24" loading="lazy"></span>MongoDB</span></div></div></div></div></div></section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -506,19 +340,19 @@
                         <input type="hidden" name="_template" value="table">
                         <div class="form-honeypot" aria-hidden="true"><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-label="Leave this field empty"></div>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" autocomplete="name" minlength="2" maxlength="120" placeholder=" " required>
                             <label for="name">Your Name</label>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" maxlength="254" placeholder=" " required>
                             <label for="email">Your Email</label>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="subject" minlength="5" maxlength="200" placeholder=" " required>
                             <label for="subject">Subject</label>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" minlength="10" maxlength="10000" placeholder=" " required></textarea>
                             <label for="message">Your Message</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
@@ -529,16 +363,26 @@
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 A H M Prabhath Dilshan Abeysinghe. All rights reserved.</p>
+                <p>&copy; 2026 A H M Prabhath Dilshan Abeysinghe. All rights reserved.</p>
                 <p>Built with ❤️ using HTML, CSS & JavaScript</p>
             </div>
         </div>
     </footer>
 
+    <dialog id="contact-success" class="success-dialog" aria-labelledby="success-title" aria-describedby="success-description">
+        <form method="dialog" class="success-dialog-content">
+            <button type="submit" class="success-close" aria-label="Close confirmation">&times;</button>
+            <div class="success-icon" aria-hidden="true"><i class="fas fa-check"></i></div>
+            <h2 id="success-title">Message submitted!</h2>
+            <p id="success-description">Thank you for getting in touch. Your message was submitted successfully. I’ll get back to you soon.</p>
+            <button type="submit" class="btn btn-primary" autofocus>Got it</button>
+        </form>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>
