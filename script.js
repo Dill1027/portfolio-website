@@ -101,104 +101,58 @@ function handleNavbarScroll() {
 }
 
 // Form Handling
-function handleFormSubmission(e) {
+async function handleFormSubmission(e) {
     e.preventDefault();
-    
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (submitButton.disabled) return;
+    const status = document.getElementById('contact-status');
     const formData = new FormData(contactForm);
-    
-    // Enhanced validation
-    const validationErrors = validateForm(formData);
-    if (validationErrors.length > 0) {
-        showNotification(validationErrors[0], 'error');
+    for (const field of ['name', 'email', 'subject', 'message']) {
+        formData.set(field, String(formData.get(field) || '').trim());
+    }
+    const errors = validateForm(formData);
+    if (errors.length) {
+        status.textContent = errors[0];
         return;
     }
-    
-    // Simulate form submission
-    const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
-    
-    submitButton.textContent = 'Sending...';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
     submitButton.disabled = true;
-    
-    // Simulate API call delay
-    setTimeout(() => {
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+    submitButton.textContent = 'Sending...';
+    contactForm.setAttribute('aria-busy', 'true');
+    status.textContent = 'Sending your message...';
+    formData.set('_subject', 'Portfolio enquiry: ' + formData.get('subject'));
+    formData.set('_replyto', formData.get('email'));
+    formData.set('_url', window.location.href);
+    try {
+        const response = await fetch(contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+            signal: controller.signal
+        });
+        const result = await response.json();
+        if (!response.ok || !(result.success === true || result.success === 'true')) {
+            throw new Error('Submission was not accepted');
+        }
+        status.textContent = 'Your message was submitted. Thank you for getting in touch!';
         contactForm.reset();
-        submitButton.textContent = originalText;
+    } catch (error) {
+        status.textContent = error.name === 'AbortError'
+            ? 'The request timed out. Your message is still here; please try again or email prabhathdilshan2001@gmail.com.'
+            : 'Unable to confirm submission. Your message is still here; please try again or email prabhathdilshan2001@gmail.com.';
+    } finally {
+        clearTimeout(timeout);
         submitButton.disabled = false;
-    }, 2000);
-    
-    // Simulate API call delay
-    setTimeout(() => {
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        contactForm.reset();
         submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
+        contactForm.setAttribute('aria-busy', 'false');
+    }
 }
 
 // Download CV functionality
 function initDownloadCV() {
-    const downloadBtn = document.getElementById('downloadCV');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // You can replace this with your actual CV URL or generate a PDF
-            const cvContent = generateCVContent();
-            downloadPDF(cvContent, 'Prabhath_Dilshan_CV.pdf');
-            
-            // Show download notification
-            showNotification('CV download started!', 'success');
-        });
-    }
-}
-
-function generateCVContent() {
-    return `
-        PRABHATH DILSHAN ABEYSINGHE
-        Full Stack Developer & UI/UX Designer
-        
-        CONTACT INFORMATION
-        Email: prabhathdilshan2001@gmail.com
-        Phone: 0765799580 / 0705799581
-        Location: Kurunegala, Sri Lanka
-        LinkedIn: linkedin.com/in/prabhath-dilshan-abeysinghe-86a672313
-        GitHub: github.com/Dill1027
-        
-        EDUCATION
-        IT Undergraduate at SLIIT
-        
-        SKILLS
-        Programming Languages: JavaScript, Python, Java, C/C++, SQL, HTML & CSS, PHP, TypeScript
-        Frameworks & Libraries: React.js, Node.js, Express.js, MongoDB, Firebase, Bootstrap, Tailwind CSS, MySQL
-        Tools & Platforms: Git & GitHub, Postman, WordPress, Excel, IntelliJ IDEA, VS Code, Zoho Tools
-        
-        EXPERIENCE
-        4+ Years in Web Development
-        10+ Projects Completed
-        8+ Technologies Mastered
-        
-        FEATURED PROJECT
-        Academic Scheduler - Full-stack web application for automated timetable creation
-        Technologies: React, Node.js, MongoDB, OpenAI API, Dialogflow
-        Live Demo: https://acedemic-sheduler.netlify.app/
-        GitHub: https://github.com/Dill1027/academic-scheduler
-    `;
-}
-
-function downloadPDF(content, filename) {
-    // Simple text download - you can enhance this with a proper PDF library
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+    // The download link serves the latest original CV document directly.
 }
 
 // Enhanced Animations
@@ -630,11 +584,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     setupSmoothScrolling();
     setupScrollAnimations();
-    setupTypingAnimation();
-    animateStats();
+
+
     initDownloadCV();
     initScrollAnimations();
-    initTypingAnimation();
+
     initMobileOptimizations();
     optimizeScrollPerformance();
     enhanceMobileNavigation();
