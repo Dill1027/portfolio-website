@@ -700,9 +700,9 @@ section {
 }
 .research-gallery {
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    align-items:start;
-    gap:24px
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:stretch;
+    gap:16px
 }
 .research-shot {
     margin:0;
@@ -712,11 +712,18 @@ section {
     overflow:hidden;
     background:var(--bg-primary)
 }
-.research-shot:first-child {
-    grid-column:1/-1
+.research-thumbnail {
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg-tertiary);
+    border-bottom:1px solid var(--border-color)
 }
 .research-preview {
     display:block;
+    width:min(100%,calc(180px * var(--shot-ratio,1.75)));
+    flex-shrink:0;
     aspect-ratio:var(--shot-ratio,1.75);
     overflow:hidden;
     position:relative;
@@ -732,15 +739,15 @@ section {
     left:var(--shot-left,0%)
 }
 .research-shot figcaption {
-    padding:20px 24px
+    padding:12px 16px
 }
 .research-shot h3 {
-    font-size:18px;
-    margin-bottom:8px
+    font-size:15px;
+    margin-bottom:5px
 }
 .research-shot p {
-    font-size:13px;
-    line-height:1.7;
+    font-size:12px;
+    line-height:1.6;
     color:var(--text-secondary);
     margin-bottom:10px
 }
@@ -1082,7 +1089,7 @@ section {
     .hero {
         padding-top:110px
     }
-    .about-highlights,.projects-grid,.skills-grid,.research-intro,.research-gallery {
+    .about-highlights,.projects-grid,.skills-grid,.research-intro {
         grid-template-columns:1fr
     }
     .highlight-item {
@@ -1099,7 +1106,7 @@ section {
         gap:20px
     }
     .research-shot figcaption {
-        padding:18px
+        padding:12px 14px
     }
     .contact-form {
         padding:23px
@@ -1136,4 +1143,22 @@ section {
         animation:none!important;
         transition:none!important
     }
+}
+
+/* Full home-page preview with its original proportions preserved. */
+.project-screenshot { display:block; overflow:hidden; }
+.project-screenshot::before { display:none; }
+.project-screenshot img { display:block; width:100%; height:100%; object-fit:contain; background:#041c3b; }
+
+/* Dashboard viewport excludes the screenshot's browser toolbar. */
+.tender-screenshot { height:auto; aspect-ratio:1.75; }
+.tender-screenshot img { position:absolute; width:100%; height:auto; max-width:none; top:-9.4%; left:0; }
+
+@media(max-width:991px) {
+    .research-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+}
+@media(max-width:480px) {
+    .research-gallery { grid-template-columns:1fr; }
+    .research-thumbnail { height:160px; }
+    .research-preview { width:min(100%,calc(160px * var(--shot-ratio,1.75))); }
 }
