@@ -65,18 +65,24 @@ git push origin main
 
 Your repository includes:
 ```
-portfolio/
-├── .github/
-│   └── copilot-instructions.md    # AI development guidelines
-├── .vscode/
-│   └── tasks.json                 # VS Code tasks
-├── images/                        # Image assets (currently empty)
-├── .gitignore                     # Git ignore rules
-├── index.html                     # Main HTML file
-├── styles.css                     # All styles and responsive design
-├── script.js                      # Interactive functionality
-├── README.md                      # Project documentation
-└── MOBILE_TESTING.md             # Mobile testing guide
+portfolio-website/
+├── index.html
+├── assets/
+│   ├── css/styles.css
+│   ├── js/script.js
+│   ├── documents/cv/
+│   ├── images/
+│   │   ├── profile/
+│   │   ├── projects/
+│   │   ├── research/
+│   │   ├── technologies/
+│   │   └── uploads/
+│   └── vendor/fontawesome/
+├── admin/
+├── content/
+├── docs/
+├── scripts/
+└── README.md
 ```
 
 ## 🏷️ Suggested Repository Topics

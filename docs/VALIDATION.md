@@ -12,4 +12,4 @@ The page was served locally and tested in installed headless Google Chrome.
 
 Research images are JPEG web copies, reduced from approximately 49 MB to 1.7 MB in total. The original supplied screenshots remain outside the repository on the user's Desktop. Screenshot crops remain CSS viewports, preserving the complete screenshot when opened separately.
 
-`styles.css` is a consolidated stylesheet. `script.js` uses one passive, animation-frame-scheduled scroll listener, no perpetual typing timers, and no reveal animations that hide page content. Icon fonts and the profile image are local to avoid blank controls when external assets cannot load. Google Fonts are optional; system font fallbacks remain available.
+`assets/css/styles.css` is a consolidated stylesheet. `assets/js/script.js` uses one passive, animation-frame-scheduled scroll listener, no perpetual typing timers, and no reveal animations that hide page content. Icon fonts and the profile image are local to avoid blank controls when external assets cannot load. Google Fonts are optional; system font fallbacks remain available.

@@ -23,14 +23,14 @@ This is a modern, responsive portfolio website built with vanilla HTML, CSS, and
 - Smooth scrolling navigation
 - Mobile hamburger menu
 - Contact form with validation
-- Scroll animations using Intersection Observer
-- Typing animation for hero section
+- Project filters with accessible result counts
+- Native dialog for contact form confirmation
 - Responsive design for all screen sizes
 
 ## File Structure
 - `index.html` - Main HTML structure
-- `styles.css` - All styling and responsive design
-- `script.js` - Interactive functionality and animations
+- `assets/css/styles.css` - All styling and responsive design
+- `assets/js/script.js` - Interactive functionality and animations
 
 ## Customization Notes
 - Update personal information in the HTML
