@@ -660,12 +660,11 @@ section {
     display:none
 }
 .research-card-image img {
-    position:absolute;
-    width:148%;
-    max-width:none;
-    height:auto;
-    left:-24%;
-    top:-25%
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 35%;
 }
 /* Research screenshots retain original proportions and per-image crop viewports. */
 .research-eyebrow {
@@ -1237,9 +1236,9 @@ section {
 .project-screenshot::before { display:none; }
 .project-screenshot img { display:block; width:100%; height:100%; object-fit:contain; background:#041c3b; }
 
-/* Dashboard viewport excludes the screenshot's browser toolbar. */
+/* Dashboard source image has its browser toolbar physically removed. */
 .tender-screenshot { height:auto; aspect-ratio:1.75; }
-.tender-screenshot img { position:absolute; width:100%; height:auto; max-width:none; top:-9.4%; left:0; }
+.tender-screenshot img { position:absolute; width:100%; height:auto; max-width:none; top:0; left:0; }
 
 @media(max-width:991px) {
     .research-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }

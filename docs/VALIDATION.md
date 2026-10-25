@@ -10,6 +10,6 @@ The page was served locally and tested in installed headless Google Chrome.
 - PDF: two pages generated from the supplied DOCX. Extracted text checked for experience, research, training and references; original DOCX retained.
 - Static checks: JavaScript syntax, local asset paths, unique IDs, matching HTML tags and section anchors.
 
-Research images are JPEG web copies, reduced from approximately 49 MB to 1.7 MB in total. The original supplied screenshots remain outside the repository on the user's Desktop. Screenshot crops remain CSS viewports, preserving the complete screenshot when opened separately.
+Research images are JPEG web copies, reduced from approximately 49 MB to 1.7 MB in total. The original supplied screenshots remain outside the repository on the user's Desktop. Safari browser chrome has been physically removed from the seven research images and tender preview. Gallery CSS viewports focus on the activity; opening an image separately also shows no Safari toolbar.
 
 `assets/css/styles.css` is a consolidated stylesheet. `assets/js/script.js` uses one passive, animation-frame-scheduled scroll listener, no perpetual typing timers, and no reveal animations that hide page content. Icon fonts and the profile image are local to avoid blank controls when external assets cannot load. Google Fonts are optional; system font fallbacks remain available.
